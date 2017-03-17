@@ -1,0 +1,45 @@
+Umfragetool
+===========
+
+research and opinion poll webapplication
+
+
+Dependencies
+============
+
+nginx
+mysql
+php-mysqli
+
+Install
+=======
+
+CREATE DATABASE umfragetool;
+CREATE USER 'myuser'@'localhost' IDENTIFIED BY 'changeme';
+GRANT ALL ON umfragetool.* TO 'myuser'@'localhost';
+FLUSH PRIVILEGES;
+\. /pathto/umfragetool-datenbank.sql
+
+configure
+=========
+
+vim classes/DB.class.php
+cd admin && chmod 755 AdminLTE2
+
+License
+=======
+
+GPLv3
+
+PHP Altorouter: MIT
+Chart.js: MIT
+AngularJS: MIT
+Angular Colorpicker: MIT
+Angular-Chart.js: BSD
+Font Awesome: SIL OFL 1.1 / MIT
+Ionicons: MIT
+
+
+
+
+
