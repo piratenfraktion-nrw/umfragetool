@@ -20,11 +20,46 @@ GRANT ALL ON umfragetool.* TO 'myuser'@'localhost';
 FLUSH PRIVILEGES;
 \. /pathto/umfragetool-datenbank.sql
 
-configure
+Configure
 =========
 
 vim classes/DB.class.php
 cd admin && chmod 755 AdminLTE2
+
+create some vhost like:
+
+server {
+    listen 80;
+
+    client_max_body_size 100M;
+
+    server_name umfragetool.local;
+    root /path/to/umfragetool/;
+
+    location /admin {
+        try_files $uri $uri/ /admin/index.php?$args;
+        index index.php index.html;
+    }
+
+    location /guest {
+        try_files $uri $uri/ /guest/index.php?$args;
+        index index.php index.html;
+    }
+
+    location /f {
+        try_files $uri $uri/ /f/index.php?$args;
+        index index.php index.html;
+    }
+
+    location ~ .php$ {
+	include fastcgi.conf;
+	fastcgi_pass php-fpm;
+	#fastcgi_index index.php;
+	include fastcgi_params;
+    }	
+
+}
+
 
 License
 =======
